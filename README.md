@@ -229,3 +229,4 @@ The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/4926286
 
 ## License
 [The MIT License](LICENSE.md)
+# meanjs-angu-tables
