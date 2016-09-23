@@ -5,10 +5,20 @@
     .module('properties')
     .controller('PropertiesListController', PropertiesListController);
 
-  PropertiesListController.$inject = ['PropertiesService'];
+  PropertiesListController.$inject = ['$scope','PropertiesService'];
 
-  function PropertiesListController(PropertiesService) {
+  function PropertiesListController($scope, PropertiesService) {
     var vm = this;
+
+    $scope.selected = [];
+
+  $scope.query = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+
 
     vm.properties = PropertiesService.query();
   }

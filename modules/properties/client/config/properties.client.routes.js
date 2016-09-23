@@ -19,6 +19,7 @@
         templateUrl: 'modules/properties/client/views/list-properties.client.view.html',
         controller: 'PropertiesListController',
         controllerAs: 'vm',
+        css: 'css/md-data-table.min.css',
         data: {
           pageTitle: 'Properties List'
         }
