@@ -30,6 +30,11 @@
 
   <!-- Fav Icon -->
   <link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+
+  <link href="https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2" type="image/x-icon">
+  
 
   <!-- Application CSS Files -->
   {{#each cssFiles}}<link rel="stylesheet" href="{{this}}">{{/each}}
@@ -37,8 +42,10 @@
 
 <body class="ng-cloak">
   <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-  <section class="content">
-    <section class="container">
+ <!--  <section class="content">
+    <section class="container"> -->
+ <section >
+    <section >    
       {{{block "content"}}}
     </section>
   </section>
