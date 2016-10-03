@@ -1,5 +1,5 @@
 [{
-	"address": "John",
+	"address": "123 main st",
 	"county": "Santa Clara",
 	"city": "",
 	"phone_no": "000-234-0909",
@@ -10,7 +10,7 @@
 	"agentName": "Meena",
 	"dom": "23"
 }, {
-	"address": "Alpha",
+	"address": "421 Palm Beach",
 	"county": "Boward",
 	"city": "",
 	"phone_no": "7823-234-0909",
@@ -21,7 +21,7 @@
 	"agentName": "Nichole",
 	"dom": "23"
 }, {
-	"address": "Carrey",
+	"address": "539 Costral Reed",
 	"county": "Sunnyvale",
 	"city": "",
 	"phone_no": "920-234-0909",

@@ -17,7 +17,7 @@
       .state('properties.list', {
         url: '',
         templateUrl: 'modules/properties/client/views/list-properties.client.view.html',
-        controller: 'PropertiesListController',
+        // controller: 'PropertiesListController',
         controllerAs: 'vm',
         css: 'css/md-data-table.min.css',
         data: {

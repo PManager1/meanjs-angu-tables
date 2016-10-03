@@ -4,7 +4,18 @@
       </div>
     </md-toolbar>
     
-    <md-content laout="column" flex ng-controller="PropertiesListController">
+    <md-content laout="column" flex ng-controller="nutritionController">
+      
+    <md-toolbar class="md-whiteframe-1dp">
+      <div class="md-toolbar-tools">
+        <div class="md-title">Material Design Data Table</div>
+
+      </div>
+    </md-toolbar>
+
+
+    
+    <md-content laout="column" flex ng-controller="nutritionController">
       
       <md-card>
         <div layout="row" layout-wrap class="checkboxes">
@@ -24,13 +35,17 @@
         <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
           <div class="md-toolbar-tools">
             <span>Nutrition2</span>
+
+            <p> here comes the scope</p>
+            <!-- {{properties}} -->
+
+
             <div flex></div>
             <md-button class="md-icon-button" ng-click="loadStuff()">
               <md-icon>refresh</md-icon>
             </md-button>
           </div>
         </md-toolbar>
-        <p>SELECTED = </p> {{selected}}
         
         <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
           <div class="md-toolbar-tools">
@@ -38,41 +53,39 @@
           </div>
         </md-toolbar>
         
-       <md-table-container>
+        <md-table-container>
           <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise">
             <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
               <tr md-row>
-                <th md-column md-order-by="name"><span>Property Address</span></th>
-                <th md-column md-order-by="type"><div>Type</div></th>
-                <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th>
-                <th md-column md-numeric md-order-by="fat.value"><span>phone no</span></th>
-                <th md-column md-numeric md-order-by="carbs.value"><span>Agent Name</span></th>
-                <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
+                <th md-column md-order-by="address"><span>Dessert (100g serving)</span></th>
+                <th md-column md-order-by="type"><span>Type</span></th>
+                <th md-column md-numeric md-order-by="calories.value" md-desc><span>Calories</span></th>
+                <th md-column md-numeric md-order-by="fat.value"><span>Fat (g)</span></th>
+                <th md-column md-numeric md-order-by="carbs.value"><span>Carbs (g)</span></th>
+                <th md-column md-numeric md-order-by="protein.value"><span>Protein (g)</span></th>
                 <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
                 <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
                 <th md-column md-order-by="comment">
-                  <!-- <p>comments<p/> -->
-                  <!-- <md-icon>comments</md-icon> -->
+                  <md-icon>comments</md-icon>
                   <span>Comments</span>
                 </th>
               </tr>
             </thead>
             <tbody md-body>
-<!-- ng-disabled="dessert.calories.value > 400" -->
-              <tr md-row md-select="dessert" md-on-select="logItem" md-auto-select="options.autoSelect"  ng-repeat="property in vm.properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+              <tr md-row md-select="property" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="property in properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                 <td md-cell>{{property.address}}</td>
                 <td md-cell>
                   <md-select ng-model="dessert.type" placeholder="Other">
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                   </md-select>
                 </td>
-                <td md-cell>{{property.county}}</td>
-                <td md-cell>{{property.phone_no}}</td>
-                <td md-cell>{{property.agentName}}</td>
-                <td md-cell>{{property.email_address}}</td>
-                <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
-                <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
+                <td md-cell>{{dessert.calories.value}}</td>
+                <td md-cell>{{dessert.fat.value | number: 2}}</td>
+                <td md-cell>{{dessert.carbs.value}}</td>
+                <td md-cell>{{dessert.protein.value | number: 2}}</td>
+                <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
+                <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
                 <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
                   {{dessert.comment || 'Add a comment'}}
@@ -100,4 +113,3 @@
 
 
 
-    
