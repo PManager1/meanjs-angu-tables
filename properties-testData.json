@@ -1,0 +1,34 @@
+[{
+	"address": "John",
+	"county": "Santa Clara",
+	"city": "",
+	"phone_no": "000-234-0909",
+	"email_address": "John@moola.com",
+	"listPrice": "60000",
+	"offerPrice": "15000",
+	"last_email_sent_on": "",
+	"agentName": "Meena",
+	"dom": "23"
+}, {
+	"address": "Alpha",
+	"county": "Boward",
+	"city": "",
+	"phone_no": "7823-234-0909",
+	"email_address": "Alpha@moola.com",
+	"listPrice": "40000",
+	"offerPrice": "12000",
+	"last_email_sent_on": "",
+	"agentName": "Nichole",
+	"dom": "23"
+}, {
+	"address": "Carrey",
+	"county": "Sunnyvale",
+	"city": "",
+	"phone_no": "920-234-0909",
+	"email_address": "Carrey@moola.com",
+	"listPrice": "34000",
+	"offerPrice": "25000",
+	"last_email_sent_on": "",
+	"agentName": "Nancy",
+	"dom": "23"
+}]
