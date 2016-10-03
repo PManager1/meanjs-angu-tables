@@ -13,7 +13,6 @@
       </div>
     </md-toolbar>
 
-
     
     <md-content laout="column" flex ng-controller="nutritionController">
       
@@ -34,22 +33,33 @@
         
         <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
           <div class="md-toolbar-tools">
-            <span>Nutrition2</span>
+            <span>Nutrition</span>
+                 
+            <div flex>
+            </div>
 
-            <p> here comes the scope</p>
-            <!-- {{properties}} -->
-
-
-            <div flex></div>
             <md-button class="md-icon-button" ng-click="loadStuff()">
               <md-icon>refresh</md-icon>
             </md-button>
+
+
+
+          <md-button class="md-icon-button" ng-click="sendEmail()">
+          <i class="material-icons">email</i>
+            </md-button>
+
+
           </div>
         </md-toolbar>
         
         <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
           <div class="md-toolbar-tools">
             <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+        
+                <md-button class="md-icon-button" ng-click="sendEmail()">
+                          <i class="material-icons">email</i>
+                 </md-button>
+
           </div>
         </md-toolbar>
         
@@ -57,12 +67,12 @@
           <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise">
             <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
               <tr md-row>
-                <th md-column md-order-by="address"><span>Dessert (100g serving)</span></th>
+                <th md-column md-order-by="address"><span>Address</span></th>
                 <th md-column md-order-by="type"><span>Type</span></th>
-                <th md-column md-numeric md-order-by="calories.value" md-desc><span>Calories</span></th>
-                <th md-column md-numeric md-order-by="fat.value"><span>Fat (g)</span></th>
-                <th md-column md-numeric md-order-by="carbs.value"><span>Carbs (g)</span></th>
-                <th md-column md-numeric md-order-by="protein.value"><span>Protein (g)</span></th>
+                <th md-column md-numeric md-order-by="calories.value" md-desc><span>County</span></th>
+                <th md-column md-numeric md-order-by="fat.value"><span>Phone no</span></th>
+                <th md-column md-numeric md-order-by="carbs.value"><span>Agent</span></th>
+                <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
                 <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
                 <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
@@ -80,10 +90,14 @@
                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                   </md-select>
                 </td>
-                <td md-cell>{{dessert.calories.value}}</td>
-                <td md-cell>{{dessert.fat.value | number: 2}}</td>
-                <td md-cell>{{dessert.carbs.value}}</td>
-                <td md-cell>{{dessert.protein.value | number: 2}}</td>
+                
+                 <td md-cell>{{property.county}}</td>
+                 <td md-cell>{{property.phone_no}}</td>
+                 <td md-cell>{{property.agentName}}</td>
+                 <td md-cell>{{property.email_address}}</td>
+                 <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
+                 <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
+                                
                 <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>

@@ -1,0 +1,371 @@
+diff --git a/modules/properties/client/config/properties.client.routes.js b/modules/properties/client/config/properties.client.routes.js
+index 18eef9c..757dd0e 100644
+--- a/modules/properties/client/config/properties.client.routes.js
++++ b/modules/properties/client/config/properties.client.routes.js
+@@ -17,7 +17,7 @@
+       .state('properties.list', {
+         url: '',
+         templateUrl: 'modules/properties/client/views/list-properties.client.view.html',
+-        controller: 'PropertiesListController',
++        // controller: 'PropertiesListController',
+         controllerAs: 'vm',
+         css: 'css/md-data-table.min.css',
+         data: {
+diff --git a/modules/properties/client/controllers/list-properties.client.controller.js b/modules/properties/client/controllers/list-properties.client.controller.js
+index 52f01c8..e4c77b1 100644
+--- a/modules/properties/client/controllers/list-properties.client.controller.js
++++ b/modules/properties/client/controllers/list-properties.client.controller.js
+@@ -3,24 +3,14 @@
+ 
+   angular
+     .module('properties')
+-    .controller('PropertiesListController', PropertiesListController);
++    .controller('nutritionController', nutritionController);
+ 
+-  PropertiesListController.$inject = ['$scope','PropertiesService'];
++  // nutritionController.$inject = ['$scope','PropertiesService'];
+ 
+-  function PropertiesListController($scope, PropertiesService) {
+-    var vm = this;
++  function nutritionController($scope, PropertiesService) {
+ 
+-    vm.properties = PropertiesService.query();
+-
+-    console.log( ' vm properties = ', vm.properties); 
+-
+-
+-  $scope.selected = [];
+-  
+-
+-
+-  console.log( ' $scope selected = ', $scope.selected); 
+ 
++     $scope.selected = [];
+   $scope.limitOptions = [5, 10, 15];
+   
+   $scope.options = {
+@@ -36,17 +26,107 @@
+   
+   $scope.query = {
+     order: 'name',
+-    limit: 15,
++    limit: 5,
+     page: 1
+   };
+   
+-
+-$scope.sendEmail = function ($scope) {
+-    // body...
+-    console.log( 'send emial clicked');
+-}
+-
+-
++  $scope.desserts = {
++    "count": 9,
++    "data": [
++      {
++        "name": "Frozen yogurt",
++        "type": "Ice cream",
++        "calories": { "value": 159.0 },
++        "fat": { "value": 6.0 },
++        "carbs": { "value": 24.0 },
++        "protein": { "value": 4.0 },
++        "sodium": { "value": 87.0 },
++        "calcium": { "value": 14.0 },
++        "iron": { "value": 1.0 }
++      }, {
++        "name": "Ice cream sandwich",
++        "type": "Ice cream",
++        "calories": { "value": 237.0 },
++        "fat": { "value": 9.0 },
++        "carbs": { "value": 37.0 },
++        "protein": { "value": 4.3 },
++        "sodium": { "value": 129.0 },
++        "calcium": { "value": 8.0 },
++        "iron": { "value": 1.0 }
++      }, {
++        "name": "Eclair",
++        "type": "Pastry",
++        "calories": { "value":  262.0 },
++        "fat": { "value": 16.0 },
++        "carbs": { "value": 24.0 },
++        "protein": { "value":  6.0 },
++        "sodium": { "value": 337.0 },
++        "calcium": { "value":  6.0 },
++        "iron": { "value": 7.0 }
++      }, {
++        "name": "Cupcake",
++        "type": "Pastry",
++        "calories": { "value":  305.0 },
++        "fat": { "value": 3.7 },
++        "carbs": { "value": 67.0 },
++        "protein": { "value": 4.3 },
++        "sodium": { "value": 413.0 },
++        "calcium": { "value": 3.0 },
++        "iron": { "value": 8.0 }
++      }, {
++        "name": "Jelly bean",
++        "type": "Candy",
++        "calories": { "value":  375.0 },
++        "fat": { "value": 0.0 },
++        "carbs": { "value": 94.0 },
++        "protein": { "value": 0.0 },
++        "sodium": { "value": 50.0 },
++        "calcium": { "value": 0.0 },
++        "iron": { "value": 0.0 }
++      }, {
++        "name": "Lollipop",
++        "type": "Candy",
++        "calories": { "value": 392.0 },
++        "fat": { "value": 0.2 },
++        "carbs": { "value": 98.0 },
++        "protein": { "value": 0.0 },
++        "sodium": { "value": 38.0 },
++        "calcium": { "value": 0.0 },
++        "iron": { "value": 2.0 }
++      }, {
++        "name": "Honeycomb",
++        "type": "Other",
++        "calories": { "value": 408.0 },
++        "fat": { "value": 3.2 },
++        "carbs": { "value": 87.0 },
++        "protein": { "value": 6.5 },
++        "sodium": { "value": 562.0 },
++        "calcium": { "value": 0.0 },
++        "iron": { "value": 45.0 }
++      }, {
++        "name": "Donut",
++        "type": "Pastry",
++        "calories": { "value": 452.0 },
++        "fat": { "value": 25.0 },
++        "carbs": { "value": 51.0 },
++        "protein": { "value": 4.9 },
++        "sodium": { "value": 326.0 },
++        "calcium": { "value": 2.0 },
++        "iron": { "value": 22.0 }
++      }, {
++        "name": "KitKat",
++        "type": "Candy",
++        "calories": { "value": 518.0 },
++        "fat": { "value": 26.0 },
++        "carbs": { "value": 65.0 },
++        "protein": { "value": 7.0 },
++        "sodium": { "value": 54.0 },
++        "calcium": { "value": 12.0 },
++        "iron": { "value": 6.0 }
++      }
++    ]
++  };
++  
+   $scope.editComment = function (event, dessert) {
+     event.stopPropagation(); // in case autoselect is enabled
+     
+@@ -102,8 +182,8 @@ $scope.sendEmail = function ($scope) {
+   }
+   
+   $scope.logItem = function (item) {
+-    // console.log(item.name, 'was selected');
+-    console.log(item, 'was selected');    
++    console.log(item.name, 'was selected');
++    console.log(item, 'only item was selected');    
+   };
+   
+   $scope.logOrder = function (order) {
+@@ -114,116 +194,5 @@ $scope.sendEmail = function ($scope) {
+     console.log('page: ', page);
+     console.log('limit: ', limit);
+   }
+-
+-
+-
+-
+-
+-
+-  // $scope.desserts = {
+-  //   "count": 9,
+-  //   "data": [
+-  //     {
+-  //       "name": "Frozen yogurt",
+-  //       "type": "Ice cream",
+-  //       "calories": { "value": 159.0 },
+-  //       "fat": { "value": 6.0 },
+-  //       "carbs": { "value": 24.0 },
+-  //       "protein": { "value": 4.0 },
+-  //       "sodium": { "value": 87.0 },
+-  //       "calcium": { "value": 14.0 },
+-  //       "iron": { "value": 1.0 }
+-  //     }, {
+-  //       "name": "Ice cream sandwich",
+-  //       "type": "Ice cream",
+-  //       "calories": { "value": 237.0 },
+-  //       "fat": { "value": 9.0 },
+-  //       "carbs": { "value": 37.0 },
+-  //       "protein": { "value": 4.3 },
+-  //       "sodium": { "value": 129.0 },
+-  //       "calcium": { "value": 8.0 },
+-  //       "iron": { "value": 1.0 }
+-  //     }, {
+-  //       "name": "Eclair",
+-  //       "type": "Pastry",
+-  //       "calories": { "value":  262.0 },
+-  //       "fat": { "value": 16.0 },
+-  //       "carbs": { "value": 24.0 },
+-  //       "protein": { "value":  6.0 },
+-  //       "sodium": { "value": 337.0 },
+-  //       "calcium": { "value":  6.0 },
+-  //       "iron": { "value": 7.0 }
+-  //     }, {
+-  //       "name": "Cupcake",
+-  //       "type": "Pastry",
+-  //       "calories": { "value":  305.0 },
+-  //       "fat": { "value": 3.7 },
+-  //       "carbs": { "value": 67.0 },
+-  //       "protein": { "value": 4.3 },
+-  //       "sodium": { "value": 413.0 },
+-  //       "calcium": { "value": 3.0 },
+-  //       "iron": { "value": 8.0 }
+-  //     }, {
+-  //       "name": "Jelly bean",
+-  //       "type": "Candy",
+-  //       "calories": { "value":  375.0 },
+-  //       "fat": { "value": 0.0 },
+-  //       "carbs": { "value": 94.0 },
+-  //       "protein": { "value": 0.0 },
+-  //       "sodium": { "value": 50.0 },
+-  //       "calcium": { "value": 0.0 },
+-  //       "iron": { "value": 0.0 }
+-  //     }, {
+-  //       "name": "Lollipop",
+-  //       "type": "Candy",
+-  //       "calories": { "value": 392.0 },
+-  //       "fat": { "value": 0.2 },
+-  //       "carbs": { "value": 98.0 },
+-  //       "protein": { "value": 0.0 },
+-  //       "sodium": { "value": 38.0 },
+-  //       "calcium": { "value": 0.0 },
+-  //       "iron": { "value": 2.0 }
+-  //     }, {
+-  //       "name": "Honeycomb",
+-  //       "type": "Other",
+-  //       "calories": { "value": 408.0 },
+-  //       "fat": { "value": 3.2 },
+-  //       "carbs": { "value": 87.0 },
+-  //       "protein": { "value": 6.5 },
+-  //       "sodium": { "value": 562.0 },
+-  //       "calcium": { "value": 0.0 },
+-  //       "iron": { "value": 45.0 }
+-  //     }, {
+-  //       "name": "Donut",
+-  //       "type": "Pastry",
+-  //       "calories": { "value": 452.0 },
+-  //       "fat": { "value": 25.0 },
+-  //       "carbs": { "value": 51.0 },
+-  //       "protein": { "value": 4.9 },
+-  //       "sodium": { "value": 326.0 },
+-  //       "calcium": { "value": 2.0 },
+-  //       "iron": { "value": 22.0 }
+-  //     }, {
+-  //       "name": "KitKat",
+-  //       "type": "Candy",
+-  //       "calories": { "value": 518.0 },
+-  //       "fat": { "value": 26.0 },
+-  //       "carbs": { "value": 65.0 },
+-  //       "protein": { "value": 7.0 },
+-  //       "sodium": { "value": 54.0 },
+-  //       "calcium": { "value": 12.0 },
+-  //       "iron": { "value": 6.0 }
+-  //     }
+-  //   ]
+-  // };
+-
+-
+-    vm.properties = PropertiesService.query();
+-  }
+-}());
+-
+-
+-
+-
+-
+-
++      }
++  }());
+diff --git a/modules/properties/client/views/list-properties.client.view.html b/modules/properties/client/views/list-properties.client.view.html
+index c1507a9..60337e4 100644
+--- a/modules/properties/client/views/list-properties.client.view.html
++++ b/modules/properties/client/views/list-properties.client.view.html
+@@ -4,7 +4,7 @@
+       </div>
+     </md-toolbar>
+     
+-    <md-content laout="column" flex ng-controller="PropertiesListController">
++    <md-content laout="column" flex ng-controller="nutritionController">
+       
+       <md-card>
+         <div layout="row" layout-wrap class="checkboxes">
+@@ -30,7 +30,6 @@
+             </md-button>
+           </div>
+         </md-toolbar>
+-        <p>SELECTED = </p> {{selected}}
+         
+         <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+           <div class="md-toolbar-tools">
+@@ -38,41 +37,39 @@
+           </div>
+         </md-toolbar>
+         
+-       <md-table-container>
++        <md-table-container>
+           <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise">
+             <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+               <tr md-row>
+-                <th md-column md-order-by="name"><span>Property Address</span></th>
+-                <th md-column md-order-by="type"><div>Type</div></th>
+-                <th md-column md-numeric md-order-by="calories.value" md-desc><span>City</span></th>
+-                <th md-column md-numeric md-order-by="fat.value"><span>phone no</span></th>
+-                <th md-column md-numeric md-order-by="carbs.value"><span>Agent Name</span></th>
+-                <th md-column md-numeric md-order-by="protein.value"><span>Email</span></th>
++                <th md-column md-order-by="name"><span>Dessert (100g serving)</span></th>
++                <th md-column md-order-by="type"><span>Type</span></th>
++                <th md-column md-numeric md-order-by="calories.value" md-desc><span>Calories</span></th>
++                <th md-column md-numeric md-order-by="fat.value"><span>Fat (g)</span></th>
++                <th md-column md-numeric md-order-by="carbs.value"><span>Carbs (g)</span></th>
++                <th md-column md-numeric md-order-by="protein.value"><span>Protein (g)</span></th>
+                 <th md-column md-numeric md-order-by="sodium.value" hide-gt-xs show-gt-md><span>Sodium (mg)</span></th>
+                 <th md-column md-numeric md-order-by="calcium.value" hide-gt-xs show-gt-lg><span>Calcium (%)</span></th>
+                 <th md-column md-numeric md-order-by="iron.value" hide-gt-xs show-gt-lg><span>Iron (%)</span></th>
+                 <th md-column md-order-by="comment">
+-                  <!-- <p>comments<p/> -->
+-                  <!-- <md-icon>comments</md-icon> -->
++                  <md-icon>comments</md-icon>
+                   <span>Comments</span>
+                 </th>
+               </tr>
+             </thead>
+             <tbody md-body>
+-<!-- ng-disabled="dessert.calories.value > 400" -->
+-              <tr md-row md-select="dessert" md-on-select="logItem" md-auto-select="options.autoSelect"  ng-repeat="property in vm.properties | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+-                <td md-cell>{{property.address}}</td>
++              <tr md-row md-select="dessert" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="dessert.calories.value > 400" ng-repeat="dessert in desserts.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
++                <td md-cell>{{dessert.name}}</td>
+                 <td md-cell>
+                   <md-select ng-model="dessert.type" placeholder="Other">
+                     <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
+                   </md-select>
+                 </td>
+-                <td md-cell>{{property.county}}</td>
+-                <td md-cell>{{property.phone_no}}</td>
+-                <td md-cell>{{property.agentName}}</td>
+-                <td md-cell>{{property.email_address}}</td>
+-                <td md-cell hide-gt-xs show-gt-md>{{property.listprice}}</td>
+-                <td md-cell hide-gt-xs show-gt-lg>{{property.listPrice}}%</td>
++                <td md-cell>{{dessert.calories.value}}</td>
++                <td md-cell>{{dessert.fat.value | number: 2}}</td>
++                <td md-cell>{{dessert.carbs.value}}</td>
++                <td md-cell>{{dessert.protein.value | number: 2}}</td>
++                <td md-cell hide-gt-xs show-gt-md>{{dessert.sodium.value}}</td>
++                <td md-cell hide-gt-xs show-gt-lg>{{dessert.calcium.value}}%</td>
+                 <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+                 <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+                   {{dessert.comment || 'Add a comment'}}
