@@ -80,6 +80,8 @@ exports.forgot = function (req, res, next) {
         subject: 'Password Reset',
         html: emailHTML
       };
+
+      console.log ( "84-mailoptions  = ", mailOptions ); 
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
           res.send({
@@ -87,7 +89,7 @@ exports.forgot = function (req, res, next) {
           });
         } else {
           return res.status(400).send({
-            message: 'Failure sending email'
+            message: 'Failure sending email 2'
           });
         }
 

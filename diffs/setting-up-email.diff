@@ -1,0 +1,43 @@
+diff --git a/config/env/development.js b/config/env/development.js
+index 74526e5..5d1965b 100644
+--- a/config/env/development.js
++++ b/config/env/development.js
+@@ -59,12 +59,12 @@ module.exports = {
+     sandbox: true
+   },
+   mailer: {
+-    from: process.env.MAILER_FROM || 'MAILER_FROM',
++    from: process.env.MAILER_FROM || 'LibertyTrust',
+     options: {
+-      service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
++      service: process.env.MAILER_SERVICE_PROVIDER || 'gmail',
+       auth: {
+-        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
+-        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
++        user: process.env.MAILER_EMAIL_ID || 'libertytrustgroupllc@gmail.com',
++        pass: process.env.MAILER_PASSWORD || 'sharejim'
+       }
+     }
+   },
+diff --git a/modules/users/server/controllers/users/users.password.server.controller.js b/modules/users/server/controllers/users/users.password.server.controller.js
+index 06197fb..a1f9fd9 100644
+--- a/modules/users/server/controllers/users/users.password.server.controller.js
++++ b/modules/users/server/controllers/users/users.password.server.controller.js
+@@ -80,6 +80,8 @@ exports.forgot = function (req, res, next) {
+         subject: 'Password Reset',
+         html: emailHTML
+       };
++
++      console.log ( "84-mailoptions  = ", mailOptions ); 
+       smtpTransport.sendMail(mailOptions, function (err) {
+         if (!err) {
+           res.send({
+@@ -87,7 +89,7 @@ exports.forgot = function (req, res, next) {
+           });
+         } else {
+           return res.status(400).send({
+-            message: 'Failure sending email'
++            message: 'Failure sending email 2'
+           });
+         }
+ 
