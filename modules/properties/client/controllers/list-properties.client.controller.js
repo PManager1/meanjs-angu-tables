@@ -194,7 +194,7 @@ $scope.rowSelected;
   };
   
   $scope.getTypes = function () {
-    return ['Candy', 'Ice cream', 'Other', 'Pastry'];
+    return ['Biweekly', 'Red-Priority', 'Orange', 'Grey'];
   };
   
   $scope.loadStuff = function () {
