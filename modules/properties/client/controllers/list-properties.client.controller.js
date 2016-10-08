@@ -6,11 +6,11 @@
     .service('selectedService', function() {
     this.list = {greet: []};
     })
-    .controller('nutritionController', nutritionController);
+    .controller('propertiesController', propertiesController);
 
-  nutritionController.$inject = ['$scope','$rootScope','PropertiesService'];
+  propertiesController.$inject = ['$scope','$rootScope','PropertiesService'];
 
-  function nutritionController($scope, $rootScope, PropertiesService) {
+  function propertiesController($scope, $rootScope, PropertiesService) {
 
     var vm = this;
     vm.properties = PropertiesService.query();
