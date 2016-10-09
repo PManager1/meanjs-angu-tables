@@ -88,17 +88,18 @@ gulp.task('watch', function () {
 
   // Add watch rules
   gulp.watch(defaultAssets.server.views).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.server.allJS, ['eslint']).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.js, ['eslint']).on('change', plugins.livereload.changed);
+    // jay 
+  // gulp.watch(defaultAssets.server.allJS, ['eslint']).on('change', plugins.livereload.changed);
+  // gulp.watch(defaultAssets.client.js, ['eslint']).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.sass, ['sass', 'csslint']).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.less, ['less', 'csslint']).on('change', plugins.livereload.changed);
 
   if (process.env.NODE_ENV === 'production') {
-    gulp.watch(defaultAssets.server.gulpConfig, ['templatecache', 'eslint']);
+    // gulp.watch(defaultAssets.server.gulpConfig, ['templatecache', 'eslint']);  //jay
     gulp.watch(defaultAssets.client.views, ['templatecache']).on('change', plugins.livereload.changed);
   } else {
-    gulp.watch(defaultAssets.server.gulpConfig, ['eslint']);
+    // gulp.watch(defaultAssets.server.gulpConfig, ['eslint']);  //jay
     gulp.watch(defaultAssets.client.views).on('change', plugins.livereload.changed);
   }
 });
@@ -137,21 +138,21 @@ gulp.task('csslint', function () {
     // .pipe(plugins.csslint.failFormatter());
 });
 
-// ESLint JS linting task
-gulp.task('eslint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    defaultAssets.client.js,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
+// ESLint JS linting task  // Jay below
+// gulp.task('eslint', function () {
+//   var assets = _.union(
+//     defaultAssets.server.gulpConfig,
+//     defaultAssets.server.allJS,
+//     defaultAssets.client.js,
+//     testAssets.tests.server,
+//     testAssets.tests.client,
+//     testAssets.tests.e2e
+//   );
 
-  return gulp.src(assets)
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
-});
+//   return gulp.src(assets)
+//     .pipe(plugins.eslint())
+//     .pipe(plugins.eslint.format());
+// });
 
 // JS minifying task
 gulp.task('uglify', function () {
@@ -454,12 +455,14 @@ gulp.task('test:coverage', function (done) {
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+  // runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], ['nodemon', 'watch'], done);  
 });
 
 // Run the project in debug mode
 gulp.task('debug', function (done) {
-  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['node-inspector', 'nodemon-debug', 'watch'], done);
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'],['node-inspector', 'nodemon-debug', 'watch'], done);
+  // runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['node-inspector', 'nodemon-debug', 'watch'], done);
 });
 
 // Run the project in production mode

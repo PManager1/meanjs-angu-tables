@@ -8,7 +8,11 @@
 	"offerPrice": "15000",
 	"last_email_sent_on": "",
 	"agentName": "Meena",
-	"dom": "23"
+	"dom": "23",
+	"no_of_times_email_sent": "23",
+	"last_date_email_open": "today_date",	
+	"email_open": "Counter",
+	"user_logged_in": "Jay"	
 }, {
 	"address": "421 Palm Beach",
 	"county": "Boward",
